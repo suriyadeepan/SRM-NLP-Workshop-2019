@@ -1,0 +1,5 @@
+r/
+.DS_Store
+.cache
+.ipynb_checkpoints
+data/
