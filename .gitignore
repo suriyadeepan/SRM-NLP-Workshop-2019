@@ -1,5 +1,7 @@
-r/
 .DS_Store
 .cache
 .ipynb_checkpoints
+__pycache__
+r/
 data/
+*.bin
