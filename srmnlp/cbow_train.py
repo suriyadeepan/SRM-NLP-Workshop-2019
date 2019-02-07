@@ -20,7 +20,8 @@ def train(model, trainset, num_epochs=50):
       optim.step()
       epoch_loss += loss.item()
 
-    print(epoch, epoch_loss)
+    if epoch % 10 == 0:
+      print('epoch [{}], Loss : {}'.format(epoch, epoch_loss))
 
 
 if __name__ == '__main__':

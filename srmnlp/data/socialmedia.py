@@ -31,3 +31,10 @@ def preprocessed_socialmedia(batch_size=32, truncate=True,
       make_batches(indexed_train, batch_size),
       make_batches(indexed_test, batch_size)
       ), vocab, w2i
+
+
+if __name__ == '__main__':
+  (train, test), vocab, w2i = preprocessed_socialmedia(batch_size=3)
+  text, label = train[0]
+  print('Text  :', text.size(), text)
+  print('Label :', label.size(), label)

@@ -81,9 +81,9 @@ def train_epoch(model, train_iter, hparams):
     acc = 100.0 * num_corrects/len(batch[0])
     epoch_accuracy += acc
 
-    if idx and idx%100 == 0:
-      print('({}) Iteration loss : {}'.format(idx, loss.item()))
-      
+    # if idx and idx%100 == 0:
+    #  print('({}) Iteration loss : {}'.format(idx, loss.item()))
+
   print('Epoch loss : {}, Epoch accuracy : {}%'.format(epoch_loss/steps, epoch_accuracy/steps))
 
   return epoch_loss/steps, epoch_accuracy/steps
