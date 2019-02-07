@@ -15,8 +15,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <!-- General and theme style sheets -->
-<link rel="stylesheet" href="reveal.js/css/reveal.css">
-<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="/Users/Suriyadeepan/Desktop/tools/reveal.js/css/reveal.css">
+<link rel="stylesheet" href="/Users/Suriyadeepan/Desktop/tools/reveal.js/css/theme/simple.css" id="theme">
 
 <!-- If the query includes 'print-pdf', include the PDF print sheet -->
 <script>
@@ -24,14 +24,14 @@ if( window.location.search.match( /print-pdf/gi ) ) {
         var link = document.createElement( 'link' );
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = 'reveal.js/css/print/pdf.css';
+        link.href = '/Users/Suriyadeepan/Desktop/tools/reveal.js/css/print/pdf.css';
         document.getElementsByTagName( 'head' )[0].appendChild( link );
 }
 
 </script>
 
 <!--[if lt IE 9]>
-<script src="reveal.js/lib/js/html5shiv.js"></script>
+<script src="/Users/Suriyadeepan/Desktop/tools/reveal.js/lib/js/html5shiv.js"></script>
 <![endif]-->
 
 <!-- Loading the mathjax macro -->
@@ -15118,6 +15118,21 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Overview">Overview<a class="anchor-link" href="#Overview">&#182;</a></h1><hr>
+<ul>
+<li>Text Represenation</li>
+<li>Reduction / Abstraction</li>
+<li><del>Articulation / Synthesis</del></li>
+<li><del>Reasoning</del></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Text-Represenation">Text Represenation<a class="anchor-link" href="#Text-Represenation">&#182;</a></h2><hr>
 <ul>
 <li>Count-based Representation</li>
@@ -15571,7 +15586,16 @@ tensor([-0.4488], requires_grad=True))]</code></pre>
 <h1 id="Logistic-Regression">Logistic Regression<a class="anchor-link" href="#Logistic-Regression">&#182;</a></h1><hr>
 <p>$$\hat{y} = \sigma( wx + b )$$
 $$ y \epsilon (0, 1)\ \forall\ x \epsilon (-\infty, +\infty) $$</p>
+<p><img src="doc/sigmoid.png" alt=""></p>
 
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Logistic-Regression">Logistic Regression<a class="anchor-link" href="#Logistic-Regression">&#182;</a></h1>
 </div>
 </div>
 </div><div class="fragment">
@@ -15623,7 +15647,8 @@ tensor([0.3851], requires_grad=True))]</code></pre>
 <li>1 input layer, 1 hidden layer, 1 output layer</li>
 </ul>
 <p>$$ \hat{y} = \tanh(W_2z + b_2) $$
-$$ z = \tanh(W_2x + b_1) $$</p>
+$$ z = \tanh(W_1x + b_1) $$</p>
+<p><img src="doc/nn.png" alt=""></p>
 
 </div>
 </div>
@@ -15691,6 +15716,825 @@ tensor([0.2987], requires_grad=True)</code></pre>
 
 </div>
 </div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Recurrent-Neural-Network">Recurrent Neural Network<a class="anchor-link" href="#Recurrent-Neural-Network">&#182;</a></h1><hr>
+<p>$$h_t = W_{hh}h_{t-1} + W_{xh}x_{t}$$
+$$y_t = softmax(W_{hy}h_t)$$</p>
+<p><img src="doc/rnn.png" alt=""></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Recurrent-Neural-Network">Recurrent Neural Network<a class="anchor-link" href="#Recurrent-Neural-Network">&#182;</a></h1><hr>
+<p><img src="doc/simple_seq2seq.png" alt=""></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Recurrent-Neural-Network">Recurrent Neural Network<a class="anchor-link" href="#Recurrent-Neural-Network">&#182;</a></h1>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="nb">input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">output_size</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">ss</span><span class="p">,</span> <span class="n">si</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">so</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">linear_final</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">output_size</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">ss</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="o">+</span> <span class="n">si</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">so</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+    <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">linear_final</span><span class="p">(</span><span class="n">out</span><span class="p">)))</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[tensor([[0.2284, 0.7716]], grad_fn=&lt;SoftmaxBackward&gt;), tensor([[0.2077, 0.7923]], grad_fn=&lt;SoftmaxBackward&gt;), tensor([[0.2070, 0.7930]], grad_fn=&lt;SoftmaxBackward&gt;), tensor([[0.2067, 0.7933]], grad_fn=&lt;SoftmaxBackward&gt;), tensor([[0.1817, 0.8183]], grad_fn=&lt;SoftmaxBackward&gt;)]
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/usr/local/lib/python3.6/site-packages/ipykernel_launcher.py:14: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="LSTM">LSTM<a class="anchor-link" href="#LSTM">&#182;</a></h1><hr>
+<p><img src="doc/lstm1.png" alt=""></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="LSTM">LSTM<a class="anchor-link" href="#LSTM">&#182;</a></h1><hr>
+<p><img src="doc/lstm_eqn.png" alt=""></p>
+
+</div>
+</div>
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="LSTM">LSTM<a class="anchor-link" href="#LSTM">&#182;</a></h1><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LstmClassifier</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hparams</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; (hparams : dictionary of hyperparameters) &quot;&quot;&quot;</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">LstmClassifier</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">hparams</span> <span class="o">=</span> <span class="n">hparams</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">hparams</span><span class="p">[</span><span class="s1">&#39;vocab_size&#39;</span><span class="p">],</span> <span class="n">hparams</span><span class="p">[</span><span class="s1">&#39;emb_dim&#39;</span><span class="p">])</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">lstm</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LSTM</span><span class="p">(</span><span class="n">hparams</span><span class="p">[</span><span class="s1">&#39;emb_dim&#39;</span><span class="p">],</span> <span class="n">hparams</span><span class="p">[</span><span class="s1">&#39;hidden_dim&#39;</span><span class="p">])</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">linear</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hparams</span><span class="p">[</span><span class="s1">&#39;hidden_dim&#39;</span><span class="p">],</span> <span class="n">hparams</span><span class="p">[</span><span class="s1">&#39;output_size&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="LSTM">LSTM<a class="anchor-link" href="#LSTM">&#182;</a></h1><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">get_hidden</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="nb">input</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+    <span class="nb">input</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span> <span class="k">if</span> <span class="n">batch_size</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">hparams</span><span class="p">[</span><span class="s1">&#39;batch_size&#39;</span><span class="p">]</span>
+    <span class="n">h0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hparams</span><span class="p">[</span><span class="s1">&#39;hidden_dim&#39;</span><span class="p">])</span>
+    <span class="n">c0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hparams</span><span class="p">[</span><span class="s1">&#39;hidden_dim&#39;</span><span class="p">])</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">lstm</span><span class="o">.</span><span class="n">flatten_parameters</span><span class="p">()</span>
+    <span class="n">lstm_out</span><span class="p">,</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lstm</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="p">(</span><span class="n">h0</span><span class="p">,</span> <span class="n">c0</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">linear_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">linear_out</span>
+</pre></div>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Preprocessing">Preprocessing<a class="anchor-link" href="#Preprocessing">&#182;</a></h1><hr>
+<ul>
+<li>Tokenization</li>
+<li>Indexing</li>
+<li>Padding</li>
+<li>Batching</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Tokenization">Tokenization<a class="anchor-link" href="#Tokenization">&#182;</a></h1>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">sentence</span> <span class="o">=</span> <span class="s2">&quot;Hi, I&#39;m Suriya&quot;</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;Hi&#39;, &#39;,&#39;, &#39;I&#39;, &#34;&#39;m&#34;, &#39;Suriya&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Indexing">Indexing<a class="anchor-link" href="#Indexing">&#182;</a></h1>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">word_to_index</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">w2i</span><span class="p">,</span> <span class="n">UNK_IDX</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">w2i</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="k">if</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">w2i</span> <span class="k">else</span> <span class="n">UNK_IDX</span>
+
+<span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">w2i</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="nb">type</span><span class="p">([]))</span>
+    <span class="k">return</span> <span class="p">[</span> <span class="n">word_to_index</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">w2i</span><span class="p">)</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">sentence</span> <span class="p">]</span>
+
+<span class="n">w2i</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;one&#39;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span> <span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;four&#39;</span> <span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+<span class="n">tokenized_sentence</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;zero&#39;</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;five&#39;</span><span class="p">]</span>
+<span class="n">index</span><span class="p">(</span><span class="n">tokenized_sentence</span><span class="p">,</span> <span class="n">w2i</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[14]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[1, 4, 3, 1]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Padding">Padding<a class="anchor-link" href="#Padding">&#182;</a></h1>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">pad</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">max_len</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">PAD_IDX</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">to_tensor</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">):</span>
+  <span class="n">max_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">])</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">max_len</span> <span class="k">else</span> <span class="n">max_len</span>
+  <span class="n">padded_text</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">for</span> <span class="n">text</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">:</span>
+    <span class="n">padded_text</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="n">text</span> <span class="o">+</span> <span class="p">[</span><span class="n">PAD_IDX</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_len</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+       <span class="p">)</span>
+    <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+  <span class="k">return</span> <span class="p">(</span>
+      <span class="n">to_tensor</span><span class="p">(</span><span class="n">padded_text</span><span class="p">)</span> <span class="k">if</span> <span class="n">to_tensor</span> <span class="k">else</span> <span class="n">padded_text</span><span class="p">,</span>
+      <span class="n">to_tensor</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+      <span class="p">)</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="p">[</span> <span class="p">([</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">),</span> <span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">1</span><span class="p">),</span> <span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span> <span class="p">]</span>
+<span class="n">pad</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[20]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(tensor([[1, 0, 0],
+         [2, 3, 0],
+         [4, 5, 6]]), tensor([1, 1, 0]))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Batching">Batching<a class="anchor-link" href="#Batching">&#182;</a></h1>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">make_batches</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
+  <span class="n">batches</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">num_batches</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span> <span class="o">//</span> <span class="n">batch_size</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_batches</span><span class="p">):</span>
+    <span class="n">batches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="n">pad</span><span class="p">(</span><span class="n">samples</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="n">batch_size</span> <span class="p">:</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">batch_size</span><span class="p">])</span>
+        <span class="p">)</span>
+  <span class="k">return</span> <span class="n">batches</span>
+
+<span class="n">samples</span> <span class="o">=</span> <span class="p">[</span> <span class="p">([</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">),</span> <span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">1</span><span class="p">),</span> <span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="mi">0</span><span class="p">),</span> <span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span> <span class="p">]</span>
+<span class="n">batches</span> <span class="o">=</span> <span class="n">make_batches</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">batch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">batches</span><span class="p">):</span>
+    <span class="n">text</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">batch</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0 tensor([[1, 0],
+        [2, 3]]) tensor([1, 1])
+1 tensor([[ 4,  5,  6,  0],
+        [ 7,  8,  9, 10]]) tensor([0, 1])
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Social-Media-Sentiment-Dataset">Social Media Sentiment Dataset<a class="anchor-link" href="#Social-Media-Sentiment-Dataset">&#182;</a></h2><hr>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>python3 srmnlp/data/socialmedia.py
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Text  : torch.Size([3, 37]) tensor([[ 1,  1, 22,  1,  1,  1, 24,  1,  1, 22,  1,  1,  1,  1,  1,  1,  1,  1,
+          1,  1,  1,  1,  1, 12,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+          0],
+        [ 1, 22,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 22,  1, 24,  1, 22,  1,
+          1,  1,  1, 24,  1, 22,  1,  1,  1,  5,  1,  1,  1,  1,  1,  5,  1,  1,
+         12],
+        [22,  1,  1,  1, 12,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+          0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+          0]])
+Label : torch.Size([3]) tensor([0, 1, 1])
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercise">Exercise<a class="anchor-link" href="#Exercise">&#182;</a></h2><hr>
+<ol>
+<li>Use existing code to recreate sentences from preprocessed social media data</li>
+<li>Reduce the number of padding zeros by sorting the samples based on length, before batching</li>
+</ol>
+
+</div>
+</div>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Continuous-Representation">Continuous Representation<a class="anchor-link" href="#Continuous-Representation">&#182;</a></h1><hr>
+<ul>
+<li>word2vec<ul>
+<li>(CBOW) Continous Bag-of-Words</li>
+<li>Skipgram</li>
+</ul>
+</li>
+<li>glove</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="CBOW">CBOW<a class="anchor-link" href="#CBOW">&#182;</a></h1><p><img src="doc/cbow1.png" alt=""></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Model">Model<a class="anchor-link" href="#Model">&#182;</a></h2><hr>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">CBOW</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+
+  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">embed_dim</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">CBOW</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+    <span class="c1"># create embeddings with random initialization</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embed_dim</span><span class="p">)</span>
+    <span class="c1"># linear layer (1)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">linear1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">embed_dim</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+    <span class="c1"># linear layer (2)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">linear2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+    <span class="n">embedded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear1</span><span class="p">(</span><span class="n">embedded</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear2</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">get_embedding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">idx</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">2.3</span><span class="p">))):</span>
+      <span class="n">idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Data">Data<a class="anchor-link" href="#Data">&#182;</a></h2><hr>
+
+<pre><code>We are about to study the idea of a computational process.
+Computational processes are abstract beings that inhabit computers.
+As they evolve, processes manipulate other abstract things called data.
+The evolution of a process is directed by a pattern of rules
+called a program. People create programs to direct processes. In effect,
+we conjure the spirits of the computer with our spells.</code></pre>
+<hr>
+<div class="highlight"><pre><span></span><span class="p">([</span><span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;idea&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;computational&#39;</span><span class="p">],</span> <span class="s1">&#39;of&#39;</span><span class="p">)</span> 
+<span class="p">([</span><span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="s1">&#39;study&#39;</span><span class="p">,</span> <span class="s1">&#39;idea&#39;</span><span class="p">,</span> <span class="s1">&#39;of&#39;</span><span class="p">],</span> <span class="s1">&#39;the&#39;</span><span class="p">)</span> 
+<span class="p">([</span><span class="s1">&#39;processes&#39;</span><span class="p">,</span> <span class="s1">&#39;manipulate&#39;</span><span class="p">,</span> <span class="s1">&#39;abstract&#39;</span><span class="p">,</span> <span class="s1">&#39;things&#39;</span><span class="p">],</span> <span class="s1">&#39;other&#39;</span><span class="p">)</span>
+<span class="p">([</span><span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;spirits&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;computer&#39;</span><span class="p">],</span> <span class="s1">&#39;of&#39;</span><span class="p">)</span>
+<span class="p">([</span><span class="s1">&#39;programs&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="s1">&#39;processes.&#39;</span><span class="p">,</span> <span class="s1">&#39;In&#39;</span><span class="p">],</span> <span class="s1">&#39;direct&#39;</span><span class="p">)</span>
+<span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;pattern&#39;</span><span class="p">,</span> <span class="s1">&#39;rules&#39;</span><span class="p">,</span> <span class="s1">&#39;called&#39;</span><span class="p">],</span> <span class="s1">&#39;of&#39;</span><span class="p">)</span>
+<span class="o">...</span>
+</pre></div>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Preprocessing">Preprocessing<a class="anchor-link" href="#Preprocessing">&#182;</a></h2><hr>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">[</span> <span class="n">words</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">],</span> <span class="n">words</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">words</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">words</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="p">]</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">samples</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">context</span><span class="p">,</span> <span class="n">target</span><span class="p">))</span>
+</pre></div>
+<hr>
+<div class="highlight"><pre><span></span><span class="n">vocab</span> <span class="o">=</span> <span class="n">create_vocabulary</span><span class="p">(</span><span class="n">samples</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span>  <span class="c1"># we do not need PAD and UNK here</span>
+<span class="n">w2i</span> <span class="o">=</span> <span class="n">vocab_to_w2i</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span>
+<span class="n">label2idx</span> <span class="o">=</span> <span class="n">w2i</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="p">[</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">label2idx</span><span class="p">[</span><span class="n">y</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">samples</span> <span class="p">]</span>
+<span class="n">indexed_samples</span> <span class="o">=</span> <span class="p">[</span> <span class="p">(</span><span class="n">index</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">w2i</span><span class="p">),</span> <span class="n">label</span><span class="p">)</span> <span class="k">for</span> <span class="n">text</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">samples</span> <span class="p">]</span>
+<span class="k">return</span> <span class="p">(</span>
+  <span class="n">make_batches</span><span class="p">(</span><span class="n">indexed_samples</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">),</span>
+  <span class="bp">None</span>
+  <span class="p">),</span> <span class="n">vocab</span><span class="p">,</span> <span class="n">w2i</span>
+</pre></div>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Training">Training<a class="anchor-link" href="#Training">&#182;</a></h2><hr>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">trainset</span><span class="p">,</span> <span class="n">num_epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+    <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">NLLLoss</span><span class="p">()</span>
+    <span class="n">optim</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_epochs</span><span class="p">):</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+        <span class="n">epoch_loss</span> <span class="o">=</span> <span class="mf">0.</span>
+        <span class="k">for</span> <span class="n">context</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">trainset</span><span class="p">:</span>
+            <span class="n">optim</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+            <span class="n">logloss</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">logloss</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+            <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+            <span class="n">optim</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+        <span class="n">epoch_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">epoch</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;epoch [{}], Loss : {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">epoch_loss</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Training">Training<a class="anchor-link" href="#Training">&#182;</a></h2><hr>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>python3 srmnlp/cbow_train.py
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>epoch [0], Loss : 238.19856929779053
+epoch [10], Loss : 1.45696222782135
+epoch [20], Loss : 0.37830962240695953
+epoch [30], Loss : 0.1671372950077057
+epoch [40], Loss : 0.0899118036031723
+Context Words :  [&#39;People&#39;, &#39;create&#39;, &#39;to&#39;, &#39;direct&#39;]
+Target Word :  programs
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Skipgram">Skipgram<a class="anchor-link" href="#Skipgram">&#182;</a></h1><p><img src="doc/skipgram.png" alt=""></p>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercise">Exercise<a class="anchor-link" href="#Exercise">&#182;</a></h2><hr>
+<ul>
+<li>Implement Skipgram</li>
+</ul>
+
+</div>
+</div>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Sentiment-Analysis">Sentiment Analysis<a class="anchor-link" href="#Sentiment-Analysis">&#182;</a></h1><hr>
+<ul>
+<li>Model : LSTM based Recurrent Neural Network</li>
+<li>Data  : Social Media Sentiment Corpus (from Kaggle)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="c1"># train-evaluate-predict</span>
+python3 srmnlp/sentiment_analysis.py
+</pre></div>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Sentiment-Analysis">Sentiment Analysis<a class="anchor-link" href="#Sentiment-Analysis">&#182;</a></h1>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>python3 srmnlp/sentiment_analysis.py
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1]
+Epoch loss : 1.376315678541477, Epoch accuracy : 57.03125%
+::[evaluation] Loss : 0.6824692029219407, Accuracy : 56.875
+[2]
+Epoch loss : 1.3328340710737767, Epoch accuracy : 60.19631576538086%
+::[evaluation] Loss : 0.604145020705003, Accuracy : 67.45192307692308
+[3]
+Epoch loss : 0.9626376546728306, Epoch accuracy : 77.9647445678711%
+::[evaluation] Loss : 0.3938124108773011, Accuracy : 82.9326923076923
+[4]
+Epoch loss : 0.7804959511909729, Epoch accuracy : 83.47355651855469%
+::[evaluation] Loss : 0.38190830326997316, Accuracy : 85.0
+[5]
+Epoch loss : 0.7446358345257931, Epoch accuracy : 83.57371520996094%
+::[evaluation] Loss : 0.3639948526254067, Accuracy : 85.4326923076923
+[6]
+Epoch loss : 0.7185407674465424, Epoch accuracy : 84.19470977783203%
+::[evaluation] Loss : 0.3618682542672524, Accuracy : 85.24038461538461
+[7]
+Epoch loss : 0.6821818559979781, Epoch accuracy : 84.49519348144531%
+::[evaluation] Loss : 0.35941146543392766, Accuracy : 85.24038461538461
+[8]
+Epoch loss : 0.6524170946616393, Epoch accuracy : 84.85576629638672%
+::[evaluation] Loss : 0.35036762540157024, Accuracy : 85.04807692307692
+[9]
+Epoch loss : 0.6279343179403207, Epoch accuracy : 85.25640869140625%
+::[evaluation] Loss : 0.3574106814769598, Accuracy : 84.90384615384616
+[10]
+Epoch loss : 0.6129882093041371, Epoch accuracy : 85.45673370361328%
+::[evaluation] Loss : 0.3531854441532722, Accuracy : 84.90384615384616
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercise">Exercise<a class="anchor-link" href="#Exercise">&#182;</a></h2><hr>
+<ul>
+<li>Try to improve the accuracy of Sentiment Classification on Social Media data</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Tasks">Tasks<a class="anchor-link" href="#Tasks">&#182;</a></h1><hr>
+<ul>
+<li><h4>Machine Translation</h4></li>
+<li><h4>Question Answering</h4></li>
+<li><h4>Text Summarization</h4></li>
+<li><h4>Natural Language Inference</h4></li>
+<li><h4>Goal Oriented Dialogue</h4></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Machine-Translation">Machine Translation<a class="anchor-link" href="#Machine-Translation">&#182;</a></h2><p><img src="doc/mt.png" alt=""></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Question-Answering">Question Answering<a class="anchor-link" href="#Question-Answering">&#182;</a></h2><p><img src="doc/qa.png" alt=""></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Text-Summarization">Text Summarization<a class="anchor-link" href="#Text-Summarization">&#182;</a></h2><p><img src="doc/summarization2.png" alt=""></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Natural-Language-Inference">Natural Language Inference<a class="anchor-link" href="#Natural-Language-Inference">&#182;</a></h2><hr>
+<ul>
+<li><h4>Entailment</h4>: If the first sentence is true, the second sentence must be true.</li>
+<li><h4>Contradiction</h4>: If the first sentence is true, the second sentence must be false.</li>
+<li><h4>Neutral</h4>: Neither entailment nor contradiction.</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Natural-Language-Inference">Natural Language Inference<a class="anchor-link" href="#Natural-Language-Inference">&#182;</a></h2><p><img src="doc/nli.svg" alt=""></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Goal-Oriented-Dialogue">Goal-Oriented Dialogue<a class="anchor-link" href="#Goal-Oriented-Dialogue">&#182;</a></h2><p><img src="doc/god0.jpg" alt=""></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Goal-Oriented-Dialogue">Goal-Oriented Dialogue<a class="anchor-link" href="#Goal-Oriented-Dialogue">&#182;</a></h2><p><img src="doc/god.png" alt=""></p>
+
+</div>
+</div>
 </div></section></section>
 </div>
 </div>
@@ -15704,8 +16548,8 @@ require(
       waitSeconds: 15
     },
     [
-      "reveal.js/lib/js/head.min.js",
-      "reveal.js/js/reveal.js"
+      "/Users/Suriyadeepan/Desktop/tools/reveal.js/lib/js/head.min.js",
+      "/Users/Suriyadeepan/Desktop/tools/reveal.js/js/reveal.js"
     ],
 
     function(head, Reveal){
@@ -15720,9 +16564,9 @@ require(
 
             // Optional libraries used to extend on reveal.js
             dependencies: [
-                { src: "reveal.js/lib/js/classList.js",
+                { src: "/Users/Suriyadeepan/Desktop/tools/reveal.js/lib/js/classList.js",
                   condition: function() { return !document.body.classList; } },
-                { src: "reveal.js/plugin/notes/notes.js",
+                { src: "/Users/Suriyadeepan/Desktop/tools/reveal.js/plugin/notes/notes.js",
                   async: true,
                   condition: function() { return !!document.body.classList; } }
             ]
