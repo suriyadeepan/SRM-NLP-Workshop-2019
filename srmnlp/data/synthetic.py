@@ -1,5 +1,6 @@
 import random
 import numpy as np
+import torch
 
 
 vocab = [
@@ -23,3 +24,8 @@ def numbers(num_lines=10, min_sent_len=2, max_sent_len=10):
     indices = np.random.randint(0, len(vocab), [sent_len, ])
     corpus.append(' '.join([ vocab[i] for i in indices ]))
   return corpus
+
+
+def noisy():
+  x = torch.arange(-5, 5, 0.1)
+  return x, 2. * x + .3 + torch.normal(torch.tensor(0.))
